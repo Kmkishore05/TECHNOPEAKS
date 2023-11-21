@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="vote1.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="vote1.js"></script>
+    </head>
+<div class="wrapper">
+    <section class="section">
+      <div class="container">
+        <div class="level">
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading">Candidates</p>
+              <p class="title candidate-count">0</p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div>
+              <div class="heading">Votes</div>
+              <div class="title vote-count">0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="level" id="results">
+      </div>
+    </section>
+    <section class="section">
+      <input type="checkbox" id="nomination-closed" class="indicator">
+      <form id="nomination">
+        <div class="field is-horizontal">
+          <div class="field-label">
+            <div class="field">
+              <label for="candidate-name">Nominate</label>
+            </div>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <input type="text" class="input" id="candidate-name" name="candidate" placeholder="Candidate name">
+            </div>
+            <div class="controls">
+              <button id="btn-submit" class="button is-primary" type="button" onclick="submitCandidate(this)">Submit</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </section>
+    <section class="section">
+      <div class="title"> Candidates </div>
+      <div class="container">
+        <div id="candidate-buttons">
+          <div class="empty heading">No candidates</div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="controls">
+        <div class="container">
+          <button class="btn btn-link" type="button" onclick="start(this)">Start Voting</button>
+          <button class="btn btn-primary" type="button" onclick="tally(this)">Tally Results</button>
+          <button class="btn btn-warning" type="button" onclick="recount(this)">Recount</button>
+          <button class="btn btn-danger" type="button" onclick="closeVoting(this)">Close Voting</button>
+          <button class="btn btn-dark" type="button" onclick="reset(this)">Reset</button>
+        </div>
+      </div>
+    </section>
+  </div>
+  </html>

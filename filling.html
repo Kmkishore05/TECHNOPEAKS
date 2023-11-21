@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting System</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        #votingPane,
+        #resultsPane {
+            width: 50%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: block;
+        }
+
+        #resultsPane {
+            display: none;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 1em;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+    <script>
+        let candidate1Votes = 0;
+        let candidate2Votes = 0;
+
+        function vote() {
+            const selectedCandidate = document.querySelector('input[name="vote"]:checked');
+
+            if (selectedCandidate) {
+                const candidateName = selectedCandidate.value;
+                
+                if (candidateName === 'candidate1') {
+                    candidate1Votes++;
+                } else if (candidateName === 'candidate2') {
+                    candidate2Votes++;
+                }
+
+                alert('Vote submitted!');
+                updateResults();
+            } else {
+                alert('Please select a candidate before submitting your vote.');
+            }
+        }
+
+        function updateResults() {
+            document.getElementById('candidate1Votes').textContent = `Candidate 1: ${candidate1Votes} votes`;
+            document.getElementById('candidate2Votes').textContent = `Candidate 2: ${candidate2Votes} votes`;
+        }
+
+        function showResults() {
+            document.getElementById('votingPane').style.display = 'none';
+            document.getElementById('resultsPane').style.display = 'block';
+        }
+
+        function hideResults() {
+            document.getElementById('votingPane').style.display = 'block';
+            document.getElementById('resultsPane').style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+    <h1>Online Voting System</h1>
+
+    <div id="votingPane">
+        <h2>Vote Now</h2>
+        <form>
+            <label for="candidate1">Candidate 1</label>
+            <input type="radio" id="candidate1" name="vote" value="candidate1" required>
+
+            <label for="candidate2">Candidate 2</label>
+            <input type="radio" id="candidate2" name="vote" value="candidate2" required>
+
+            <button type="button" onclick="vote()">Submit Vote</button>
+        </form>
+    </div>
+
+    <div id="resultsPane">
+        <h2>Results</h2>
+        <p id="candidate1Votes">Candidate 1: 0 votes</p>
+        <p id="candidate2Votes">Candidate 2: 0 votes</p>
+        <button type="button" onclick="hideResults()">Back to Voting</button>
+    </div>
+
+    <button type="button" onclick="showResults()">Show Results</button>
+</body>
+</html>

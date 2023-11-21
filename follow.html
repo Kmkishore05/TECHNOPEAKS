@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voting System</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      background-image: linear-gradient(to bottom, orange, white,green);
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .option {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .option input {
+      margin-right: 10px;
+    }
+
+    #resultPanel {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #resultPanel h2 {
+      text-align: center;
+    }
+
+    #resultPanel .result {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    #toggleResults {
+      display: block;
+      margin: 20px auto;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Vote for Your Favorite Option</h1>
+
+    <div class="options">
+      <div class="option">
+        <input type="radio" name="vote" id="option1">
+        <label for="option1">Option 1</label>
+      </div>
+
+      <div class="option">
+        <input type="radio" name="vote" id="option2">
+        <label for="option2">Option 2</label>
+      </div>
+    </div>
+
+    <button onclick="submitVote()">Submit Vote</button>
+
+    <div id="resultPanel">
+      <h2>Results</h2>
+      <div class="result">
+        <span>Option 1:</span>
+        <span id="resultOption1">0 votes</span>
+      </div>
+      <div class="result">
+        <span>Option 2:</span>
+        <span id="resultOption2">0 votes</span>
+      </div>
+    </div>
+
+    <button id="toggleResults" onclick="toggleResults()">Toggle Results</button>
+  </div>
+
+  <script>
+    function submitVote() {
+      // Get the selected option
+      const option1 = document.getElementById('option1');
+      const option2 = document.getElementById('option2');
+
+      // Increment the vote count for the selected option
+      if (option1.checked) {
+        updateResult('resultOption1');
+      } else if (option2.checked) {
+        updateResult('resultOption2');
+      } else {
+        alert('Please select an option before submitting your vote.');
+      }
+    }
+
+    function updateResult(resultId) {
+      const resultElement = document.getElementById(resultId);
+      const currentVotes = parseInt(resultElement.textContent, 10);
+      resultElement.textContent = `${currentVotes + 1} vote${currentVotes === 0 ? '' : 's'}`;
+    }
+
+    function toggleResults() {
+      const resultPanel = document.getElementById('resultPanel');
+      resultPanel.style.display = resultPanel.style.display === 'none' ? 'block' : 'none';
+    }
+  </script>
+
+</body>
+</html>
