@@ -1,0 +1,54 @@
+<html>
+<head>
+    <link rel="stylesheet" href="voters.css">
+<script>
+function encrypt(str, key) {
+  let encrypted = "";
+  for (let i = 0; i < str.length; i++) {
+    let charCode = str.charCodeAt(i);
+    let newCode = charCode + key;
+    encrypted += String.fromCharCode(newCode);
+  }
+  return encrypted;
+}
+
+function decrypt(str, key) {
+  let decrypted = "";
+  for (let i = 0; i < str.length; i++) {
+    let charCode = str.charCodeAt(i);
+    let newCode = charCode - key;
+    decrypted += String.fromCharCode(newCode);
+  }
+  return decrypted;
+}
+
+function hideInput() {
+  let input = document.getElementById("input").value;
+  let key = 3; 
+  let encrypted = encrypt(input, key);
+  document.getElementById("output").value = encrypted;
+}
+
+function showInput() {
+  let output = document.getElementById("output").value;
+  let key = 3; 
+  let decrypted = decrypt(output, key);
+  document.getElementById("output").value = decrypted;
+}
+</script>
+</head>
+<body>
+<h1>Voting Is Our Rights to Do . Vote Here !!!</h1>
+<p>Enter the Voter ID Number Properly as per the Voter ID  </p>
+<input id="input" type="text" placeholder="Enter your voter ID number here">
+<button onclick="hideInput()">GENERATE THE CODE</button>
+<br>
+<br>
+
+<p>Your code will generate here to vote the next ....</p>
+<input id="output" type="text" readonly>
+
+
+<button><a href="follow.html" type="submit">READY TO VOTE</a></button>
+</body>
+</html>
